@@ -1,3 +1,4 @@
+using MySql.Data.MySqlClient;
 namespace Classe_Aluno
 {
     public partial class Form1 : Form
@@ -5,6 +6,23 @@ namespace Classe_Aluno
         public Form1()
         {
             InitializeComponent();
+
+            string mysqlcon = "server=localhost;user=root;database=database;password=";
+            MySqlConnection mySqlConnection = new MySqlConnection(mysqlcon);
+
+            try
+            {
+                mySqlConnection.Open(); 
+                MessageBox.Show("Sucesso"); 
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                mySqlConnection.Close();
+            }
         }
 
         Aluno novoAluno = new Aluno();
